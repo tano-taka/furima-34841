@@ -21,7 +21,7 @@
 
 ## items テーブル
 
- Column                  | Type        | 0ptions                       |
+| Column                 | Type        | 0ptions                       |
 | ---------------------- | ----------- | ----------------------------- |
 | name                   | string      | null: false                   |
 | info                   | text        | null: false                   |
@@ -43,7 +43,7 @@
 
 ## addresses
 
- Column         | Type        | 0ptions                       |
+|Column         | Type        | 0ptions                       |
 | ------------- | ----------- | ----------------------------- |
 | postal_code   | string      | null: false                   |
 | prefecture_id | integer     | null: false                   |
@@ -51,7 +51,7 @@
 | addresses     | string      | null: false                   |
 | building_name | string      |                               |
 | phone_number  | string      | null: false                   |
-| records       | references  | null: false, foreign_key:true |
+| record        | references  | null: false, foreign_key:true |
 
 ### Association
 
@@ -59,7 +59,7 @@
 
 ## records
 
- Column     | Type        b| 0ptions                      |
+|Column     | Type        | 0ptions                       |
 | --------- | ----------- | ----------------------------- |
 | user      | references  | null: false, foreign_key:true |
 | item      | references  | null: false, foreign_key:true |
