@@ -6,14 +6,16 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :scheduled_delivery
 
+  belongs_to :user
   has_one_attached :image
-  
-  validates :price_before_type_cast, format: {with: /\A[0-9]+\z/, message: 'Half-width number'}
+
+  validates :price_before_type_cast, format: { with: /\A[0-9]+\z/, message: 'Half-width number' }
   with_options presence: true do
     validates :image
     validates :name
     validates :info
-    validates_inclusion_of :price, in: 300..9999999, message: 'Out of setting range'
+    validates :price
+    validates_inclusion_of :price, in: 300..9_999_999, message: 'Out of setting range'
   end
 
   with_options numericality: { other_than: 1, message: 'Select' } do
@@ -21,6 +23,6 @@ class Item < ApplicationRecord
     validates :sales_status_id
     validates :shipping_fee_status_id
     validates :prefecture_id
-    validates :scheduled_delivery_id    
+    validates :scheduled_delivery_id
   end
 end
