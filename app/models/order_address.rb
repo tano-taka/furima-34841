@@ -11,7 +11,7 @@ class OrderAddress
     validates :prefecture_id, numericality: { other_than: 1, message: 'Select' }
     validates :city 
     validates :addresses 
-    validates :phone_number, format: { with: /\A[0-9０-９]+\z/, message: 'Input only number'}
+    validates :phone_number, format: { with: /\A\d{11}\z/, message: 'Input only number'}
   end
 
   def save
