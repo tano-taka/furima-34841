@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
+  before_action :purchase_decision
+  before_action :purchased
 
   def index
     @order_address = OrderAddress.new 
@@ -35,4 +37,13 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )    
   end
+
+  def purchase_decision
+    redirect_to root_path if current_user.id == @item.user_id
+  end
+
+  def purchased
+    redirect_to root_path unless @item.order.nil?
+  end
+
 end
