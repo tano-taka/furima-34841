@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
   before do
-    @order = FactoryBot.build(:order_address)
+    item = FactoryBot.create(:item)
+    @order = FactoryBot.build(:order_address, user_id: item.user.id, item_id: item.id )
+    sleep 0.1
   end
 
   describe '商品購入フォームの入力' do
@@ -54,6 +56,11 @@ RSpec.describe OrderAddress, type: :model do
       end
       it '電話番号は数字のみでないと登録できないこと' do
         @order.phone_number = '090-1234-5678'
+        @order.valid?
+        expect(@order.errors.full_messages).to include('Phone number Input only number')
+      end
+      it '電話番号は英数混合では登録できないこと' do
+        @order.phone_number = 'abc12345678'
         @order.valid?
         expect(@order.errors.full_messages).to include('Phone number Input only number')
       end
