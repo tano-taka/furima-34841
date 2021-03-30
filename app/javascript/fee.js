@@ -10,4 +10,6 @@ function tax (){
   });
 }
 
+if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
 window.addEventListener('load', tax);
+};
