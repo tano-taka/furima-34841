@@ -89,6 +89,19 @@
   margin-bottom: 15px;
 }
 
+.items_preview {
+  display: flex;
+  align-items: center;
+}
+
+.item_preview {
+  width: 100%;
+  height: 30vh;
+  min-height: 350px;
+  object-fit: contain;
+}
+
+
 /* /出品画像 */
 
 /* 商品名と商品説明 */
