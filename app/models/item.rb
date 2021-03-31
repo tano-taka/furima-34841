@@ -8,11 +8,11 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one :order
-  has_one_attached :image
+  has_many_attached :images
 
   validates :price_before_type_cast, format: { with: /\A[0-9]+\z/, message: 'Half-width number' }
   with_options presence: true do
-    validates :image
+    validates :images
     validates :name
     validates :info
     validates :price
