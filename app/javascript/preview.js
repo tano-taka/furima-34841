@@ -43,7 +43,13 @@ if (document.URL.match( /items/ )) {
         const clickElement = document.querySelector('#item-image')
         clickElement.remove()
         removeButton.remove()
-
+        // inputボタン再設置
+        const imgUpload = document.querySelector('.img-upload')
+        const inputHTML = document.createElement('input')
+        inputHTML.setAttribute('name', 'item[images][]')
+        inputHTML.setAttribute('type', 'file')
+        inputHTML.setAttribute('id', `item_image_${imageElementNum}`)
+        imgUpload.appendChild(inputHTML)
       })
 
       inputHTML.addEventListener('change', (e) => {
