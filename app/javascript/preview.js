@@ -34,24 +34,7 @@ if (document.URL.match( /items/ )) {
         imgUpload.appendChild(removeElement)
         clickElement.setAttribute('class', 'hidden')
       }
-      // 画像リセットボタン押すと画像が全て消える
-      const removeButton = document.getElementById('remove_image')
-      removeButton.addEventListener('click', function(){
-        const allImages = document.querySelector('.image-element')
-        allImages.remove()
-
-        const clickElement = document.querySelector('#item-image')
-        clickElement.remove()
-        removeButton.remove()
-        // inputボタン再設置
-        const imgUpload = document.querySelector('.img-upload')
-        const inputHTML = document.createElement('input')
-        inputHTML.setAttribute('name', 'item[images][]')
-        inputHTML.setAttribute('type', 'file')
-        inputHTML.setAttribute('id', `item_image_${imageElementNum}`)
-        imgUpload.appendChild(inputHTML)
-      })
-
+     
       inputHTML.addEventListener('change', (e) => {
         file = e.target.files[0];
         blob = window.URL.createObjectURL(file);
@@ -69,5 +52,27 @@ if (document.URL.match( /items/ )) {
       createImageHTML(blob);
       
     });
+     // 画像リセットボタン押すと画像が全て消える
+    document.getElementById('item-image').addEventListener('change', function(e){
+      const removeButton = document.getElementById('remove_image')
+      removeButton.addEventListener('click', function(){
+        const allImages = document.querySelector('.image-element')
+        allImages.remove()
+
+        const clickElement = document.querySelector('#item-image')
+        clickElement.remove()
+        removeButton.remove()
+        // inputボタン再設置
+        const imgUpload = document.querySelector('.img-upload')
+        const inputHTML = document.createElement('input')
+        inputHTML.setAttribute('name', 'item[images][]')
+        inputHTML.setAttribute('type', 'file')
+        inputHTML.setAttribute('id', `item_image_${imageElementNum}`)
+        imgUpload.appendChild(inputHTML)
+
+
+        
+      })
+    })
   });
 }
