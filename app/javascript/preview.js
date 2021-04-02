@@ -17,6 +17,8 @@ if (document.URL.match( /items/ )) {
       inputHTML.setAttribute('name', 'item[images][]')
       inputHTML.setAttribute('type', 'file')
       inputHTML.setAttribute('id', `item_image_${imageElementNum}`)
+      inputHTML.setAttribute('class', 'add_input')
+
 
       imageElement.appendChild(blobImage)
       imageElement.appendChild(inputHTML)
@@ -32,7 +34,7 @@ if (document.URL.match( /items/ )) {
 
         const imgUpload = document.querySelector('.img-upload')
         imgUpload.appendChild(removeElement)
-        clickElement.setAttribute('class', 'hidden')
+        clickElement.setAttribute('class', 'hidden add_input')
       }
      
       inputHTML.addEventListener('change', (e) => {
@@ -41,7 +43,7 @@ if (document.URL.match( /items/ )) {
         createImageHTML(blob)
         const hiddenInput = document.querySelector(`#item_image_${imageElementNum}`)
         if(hiddenInput){
-          hiddenInput.setAttribute('class', 'hidden')
+          hiddenInput.setAttribute('class', 'hidden add_input')
         }
       })
     }
@@ -56,22 +58,29 @@ if (document.URL.match( /items/ )) {
     document.getElementById('item-image').addEventListener('change', function(e){
       const removeButton = document.getElementById('remove_image')
       removeButton.addEventListener('click', function(){
-        const allImages = document.querySelector('.image-element')
-        allImages.remove()
-
-        const clickElement = document.querySelector('#item-image')
-        clickElement.remove()
+        const allForm = document.querySelectorAll('.hidden');
+        const allImages = document.querySelectorAll('img');
+        allImages.forEach(function( image ) {
+          image.remove() 
+        })
+        allForm.forEach(function( form ) {
+          form.remove() 
+        })
+        
+        const addInputElement = document.querySelector('.add_input')
+        addInputElement.remove()
         removeButton.remove()
         // inputボタン再設置
+
         const imgUpload = document.querySelector('.img-upload')
         const inputHTML = document.createElement('input')
+        let imageElementNum = document.querySelectorAll('.image-element').length
         inputHTML.setAttribute('name', 'item[images][]')
         inputHTML.setAttribute('type', 'file')
         inputHTML.setAttribute('id', `item_image_${imageElementNum}`)
+        inputHTML.setAttribute('class', 'add_input')
+
         imgUpload.appendChild(inputHTML)
-
-
-        
       })
     })
   });
