@@ -61,5 +61,4 @@ class ItemsController < ApplicationController
   def purchased
     redirect_to root_path unless @item.order.nil?
   end
-
 end
