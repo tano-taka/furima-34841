@@ -23,6 +23,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @message = Message.new
+    @messages = @item.messages.includes(:user)
   end
 
   def edit
@@ -59,4 +61,5 @@ class ItemsController < ApplicationController
   def purchased
     redirect_to root_path unless @item.order.nil?
   end
+
 end

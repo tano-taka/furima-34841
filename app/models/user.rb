@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :orders
+  has_many :messages
 
   validates_format_of :password, with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'Include both letters and numbers'
 
